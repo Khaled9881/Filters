@@ -1,4 +1,6 @@
 
+using Serilog;
+
 namespace Filters
 {
     public class Program
@@ -13,6 +15,13 @@ namespace Filters
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+
+            builder.Host.UseSerilog((context, services, loggerConfig) =>
+            {
+                loggerConfig.ReadFrom.Configuration(context.Configuration);
+                loggerConfig.ReadFrom.Services(services);
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -22,6 +31,7 @@ namespace Filters
             }
 
             app.UseHttpsRedirection();
+            app.UseSerilogRequestLogging();
 
             app.UseAuthorization();
 

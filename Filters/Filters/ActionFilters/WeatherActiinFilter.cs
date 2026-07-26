@@ -6,13 +6,15 @@ namespace Filters.Filters.ActionFilters
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            logger.LogInformation("After Action ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️");
+            string prope = "After Action";
+            logger.LogInformation("{prop} ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️", prope);
 
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            logger.LogInformation("Before Action ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️");
+            string prope = "Before Action";
+            logger.LogInformation("{prop} ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️", prope);
         }
     }
 }

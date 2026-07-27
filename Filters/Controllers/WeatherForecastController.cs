@@ -5,6 +5,7 @@ namespace Filters.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [TypeFilter(typeof(WeatherActiinFilter), Arguments = new object[] { "controller-Key", "controller-Value" }, Order = 2)]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries =
@@ -13,7 +14,7 @@ namespace Filters.Controllers
         ];
 
         [HttpGet(Name = "GetWeatherForecast")]
-        [TypeFilter(typeof(WeatherActiinFilter))]
+        [TypeFilter(typeof(WeatherActiinFilter), Arguments = new object[] { "custom-Key", "Custom-Value" }, Order = 3)]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

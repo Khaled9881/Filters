@@ -1,4 +1,5 @@
 
+using Filters.Filters.ActionFilters;
 using Serilog;
 
 namespace Filters
@@ -11,7 +12,14 @@ namespace Filters
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options =>
+            {
+                //options.Filters.Add<WeatherActiinFilter>();
+
+                var logr = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<WeatherActiinFilter>>();
+
+                options.Filters.Add(new WeatherActiinFilter(logr, "global_key", "global_vlaue"));
+            });
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 

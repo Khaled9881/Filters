@@ -15,13 +15,14 @@ namespace Filters.Controllers
         ];
 
         [HttpGet(Name = "GetWeatherForecast")]
-        [TypeFilter(typeof(WeatherActiinFilter), Arguments = new object[] { "custom-Key", "Custom-Value" }, Order = 3)]
+        //[TypeFilter(typeof(WeatherActiinFilter), Arguments = new object[] { "custom-Key", "Custom-Value" }, Order = 3)]
+        [WeatherActiinFilter("custom-Key", "Custom-Value")]
         [TypeFilter(typeof(HandleExcptionFilter))]
         [SkipExceptionFilter]
         public IEnumerable<WeatherForecast> Get()
         {
 
-            throw new NotImplementedException("Not Implemnted LolLLLLLLLLLLLLLLLLLLLLLLLLl");
+            //throw new NotImplementedException("Not Implemnted LolLLLLLLLLLLLLLLLLLLLLLLLLl");
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

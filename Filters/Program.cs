@@ -19,7 +19,9 @@ namespace Filters
 
                 var logr = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<WeatherActiinFilter>>();
 
-                options.Filters.Add(new WeatherActiinFilter(logr, "global_key", "global_vlaue"));
+                //options.Filters.Add(new WeatherActiinFilter(logr, "global_key", "global_vlaue"));
+
+                options.Filters.Add(new WeatherActiinFilter("global_key", "global_vlaue"));
 
                 //options.Filters.Add<HandleExcptionFilter>();
             });

@@ -1,4 +1,5 @@
 using Filters.Filters.ActionFilters;
+using Filters.Filters.ExceptionFilters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Filters.Controllers
@@ -15,8 +16,12 @@ namespace Filters.Controllers
 
         [HttpGet(Name = "GetWeatherForecast")]
         [TypeFilter(typeof(WeatherActiinFilter), Arguments = new object[] { "custom-Key", "Custom-Value" }, Order = 3)]
+        [TypeFilter(typeof(HandleExcptionFilter))]
         public IEnumerable<WeatherForecast> Get()
         {
+
+            throw new NotImplementedException("Not Implemnted LolLLLLLLLLLLLLLLLLLLLLLLLLl");
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

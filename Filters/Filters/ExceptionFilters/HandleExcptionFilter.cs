@@ -7,17 +7,29 @@ namespace Filters.Filters.ExceptionFilters
     {
         public void OnException(ExceptionContext context)
         {
-            _logger.LogError("Excption Filter: {filtername}. Method Name: {methodname}.\n {ExceptionType}\n{ExceptionMessage} ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️", nameof(HandleExcptionFilter), nameof(OnException), context.Exception.GetType().ToString(), context.Exception.Message);
 
-            if (!_hostEnvironment.IsDevelopment())
+            if (context.Filters.OfType<SkipExceptionFilter>().Any())
             {
-                context.Result = new ContentResult()
-                {
-                    Content = context.Exception.Message,
-                    ContentType = context.Exception.GetType().ToString(),
-                    StatusCode = 500
-                };
+                return;
             }
+            else
+            {
+
+                _logger.LogError("Excption Filter: {filtername}. Method Name: {methodname}.\n {ExceptionType}\n{ExceptionMessage} ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️", nameof(HandleExcptionFilter), nameof(OnException), context.Exception.GetType().ToString(), context.Exception.Message);
+
+                if (_hostEnvironment.IsDevelopment())
+                {
+                    context.Result = new ContentResult()
+                    {
+                        Content = context.Exception.Message,
+                        ContentType = context.Exception.GetType().ToString(),
+                        StatusCode = 500
+                    };
+                }
+            }
+
+
+
         }
     }
 }

@@ -1,5 +1,6 @@
 
 using Filters.Filters.ActionFilters;
+using Filters.Filters.ExceptionFilters;
 using Serilog;
 
 namespace Filters
@@ -19,6 +20,8 @@ namespace Filters
                 var logr = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<WeatherActiinFilter>>();
 
                 options.Filters.Add(new WeatherActiinFilter(logr, "global_key", "global_vlaue"));
+
+                //options.Filters.Add<HandleExcptionFilter>();
             });
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();

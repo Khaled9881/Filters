@@ -21,7 +21,8 @@ namespace Filters
 
                 //options.Filters.Add(new WeatherActiinFilter(logr, "global_key", "global_vlaue"));
 
-                options.Filters.Add(new WeatherActiinFilter("global_key", "global_vlaue"));
+                //options.Filters.Add(new WeatherActiinFilter("global_key", "global_vlaue"));
+                options.Filters.Add(new WeatherActiinFilterFactoryAttribute("global_key", "global_vlaue"));
 
                 //options.Filters.Add<HandleExcptionFilter>();
             });

@@ -16,7 +16,8 @@ namespace Filters.Controllers
 
         [HttpGet(Name = "GetWeatherForecast")]
         //[TypeFilter(typeof(WeatherActiinFilter), Arguments = new object[] { "custom-Key", "Custom-Value" }, Order = 3)]
-        [WeatherActiinFilter("custom-Key", "Custom-Value")]
+        //[WeatherActiinFilter("custom-Key", "Custom-Value")]
+        [WeatherActiinFilterFactory("custom-Key", "Custom-Value")]
         [TypeFilter(typeof(HandleExcptionFilter))]
         [SkipExceptionFilter]
         public IEnumerable<WeatherForecast> Get()
